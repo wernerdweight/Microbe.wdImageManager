@@ -1,0 +1,40 @@
+{
+    "name":        "wernerdweight/microbe-image-manager",
+    "type":        "plugin",
+    "description": "Support for image resizing, cropping and encrypting for Microbe.",
+    "keywords":    [
+        "image",
+        "resize",
+        "crop",
+        "encrypt"
+    ],
+    "homepage":    "https://gitlab.com/WernerDweight/Microbe.wdImageManager",
+    "license":     "MIT",
+
+    "authors": [
+        {
+            "name": "Werner Dweight",
+            "email": "wd@wernerdweight.com"
+        }
+    ],
+
+    "require": {
+        "php":                          ">=5.5.9",
+        "wernerdweight/image-manager":  "~1.0"
+    },
+
+    "require-dev": {},
+
+    "suggest": {
+        "wernerdweight/microbe":  "~1.0"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "WernerDweight\\MicrobeImageManager\\": ""
+        }
+    },
+
+    "target-dir": "WernerDweight/MicrobeImageManager"
+
+}
