@@ -16,30 +16,14 @@ Installation
 	}
 ```
 
-2) Enable the bundle
-
-Enable the bundle in your kernel:
-
-```php
-	<?php
-	/// app/appKernel.php
-
-	public function registerBundles()
-	{
-		$bundles = array(
-			/// ...
-			new WernerDweight\ImageManagerBundle\WDImageManagerBundle(),
-		);
-	}
-```
-
 3) Setup config
 
 ```yml
-# app/config/config.yml
+# app/config/microbe.yml
 wd_image_manager:
-    upload_root: absolute/path/to/web/directory # typically %kernel.root_dir%/../web
-    upload_path: relative/path/for/storing/images # e.g. uploads/images
+	enabled: true
+    upload_root: path/to/web/directory # public/uploads
+    upload_path: relative/path/for/storing/images # e.g. images/image-manager
     secret: thisIsNotSecret # you can use app secret (%secret%) or any other custom secret (needed for encryption)
     versions:
         version_name_x:	# this key will be used as name of directory to where this version of images will be saved
@@ -58,13 +42,13 @@ Usage
 Code to be used inside a controller:
 ```php
 		/// get manager
-		$im = $this->get('wd_image_manager');
+		$im = $this->kernel->service('imageManager');
 		
 		/// upload your image file(s), create database records etc.
 		...
 
 		/// process image (one by one)
-		/// 1st parameter ($file) is instance of Symfony\Component\HttpFoundation\File\UploadedFile (mandatory)
+		/// 1st parameter ($file) is instance of WernerDweight\MicrobeImageManager\File\UploadedFile (mandatory)
 		/// 2nd parameter is the filename of newly created file (mandatory)
 		/// 3rd parameter is a path under upload_path from config (optional)
 		$processedImageInfo = $im->processImage($file,'destination-filename','/optional/subpath');
