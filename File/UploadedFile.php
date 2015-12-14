@@ -7,7 +7,15 @@ class UploadedFile extends \SplFileInfo
 	protected $originalName;
 	protected $mimeType;
 
-	protected function getFileame($filename){
+	protected function getMimeType(){
+		$finfo = finfo_open(FILEINFO_MIME_TYPE);
+		$mimeType = finfo_file($finfo,$this->getPathname());
+		finfo_close($finfo);
+
+		return $mimeType;
+	}
+
+	public function getFilename($filename){
         /// remove slashes from the (temporary) filename
         $originalName = str_replace('\\','/',$filename);
         $pos = strrpos($originalName,'/');
@@ -15,10 +23,10 @@ class UploadedFile extends \SplFileInfo
     }
 
 	public function __construct($path,$originalName,$mimeType = null){
-		$this->originalName = $this->getFilename($originalName);
-        $this->mimeType = $mimeType ? $mimeType : 'application/octet-stream';
+		parent::__construct($path);
 
-        parent::__construct($path);
+		$this->originalName = $this->getFilename($originalName);
+        $this->mimeType = $mimeType ? $mimeType : $this->getMimeType();
 	}
 
 	public function getExtension(){
