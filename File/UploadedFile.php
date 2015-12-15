@@ -16,17 +16,17 @@ class UploadedFile extends \SplFileInfo
 	}
 
 	public function getFilename($filename){
-        /// remove slashes from the (temporary) filename
-        $originalName = str_replace('\\','/',$filename);
-        $pos = strrpos($originalName,'/');
-        return (false === $pos ? $originalName : substr($originalName,$pos+1));
-    }
+		/// remove slashes from the (temporary) filename
+		$originalName = str_replace('\\','/',$filename);
+		$pos = strrpos($originalName,'/');
+		return (false === $pos ? $originalName : substr($originalName,$pos+1));
+	}
 
 	public function __construct($path,$originalName,$mimeType = null){
 		parent::__construct($path);
 
 		$this->originalName = $this->getFilename($originalName);
-        $this->mimeType = $mimeType ? $mimeType : $this->getMimeType();
+		$this->mimeType = $mimeType ? $mimeType : $this->getMimeType();
 	}
 
 	public function getExtension(){
@@ -40,7 +40,7 @@ class UploadedFile extends \SplFileInfo
 	public function move($destination,$filename){
 		/// check that file actually exists
 		if(!is_uploaded_file($this->getPathname())){
-			throw new \Exception($this->getErrorMessage());
+			throw new \Exception('File couldn\'t be uploaded!');
 		}
 
 		/// chceck that destination directory exists
