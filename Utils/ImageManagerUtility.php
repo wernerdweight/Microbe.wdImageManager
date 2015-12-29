@@ -61,7 +61,7 @@ class ImageManagerUtility
                     $this->im->encrypt();
                 }
                 /// save the newly created image version to its destination
-                $this->im->saveImage($this->uploadPath.$this->customPath.'/'.$versionName.'/',$this->destinationFilename,(isset($version['type']) ? $version['type'] : null),(isset($version['quality']) ? $version['quality'] : 75));
+                $this->im->saveImage($this->uploadRoot.DIRECTORY_SEPARATOR.$this->uploadPath.$this->customPath.'/'.$versionName.'/',$this->destinationFilename,(isset($version['type']) ? $version['type'] : null),(isset($version['quality']) ? $version['quality'] : 75));
             }
             /// delete original file as we won't need it anymore
             $this->unlinkOriginalFile();
@@ -97,7 +97,7 @@ class ImageManagerUtility
     protected function preparePaths($destinationFilename, $photoFile, $customPath = null, $extension = null){
         $this->customPath = $customPath;
         $this->destinationFilename = $this->createUniqueFilename($destinationFilename,(null !== $photoFile ? $photoFile->getExtension() : $extension));
-        $this->assetPath = $this->uploadPath.$this->customPath.'/'.$this->destinationFilename.'.'.(null !== $photoFile ? $photoFile->getExtension() : $extension);
+        $this->assetPath = $this->uploadRoot.DIRECTORY_SEPARATOR.$this->uploadPath.$this->customPath.'/'.$this->destinationFilename.'.'.(null !== $photoFile ? $photoFile->getExtension() : $extension);
     }
 
     public function processImage(UploadedFile $photoFile, $destinationFilename, $customPath = null)
@@ -106,7 +106,7 @@ class ImageManagerUtility
 
         try {
             /// move file to temporary destination
-            $photoFile->move($this->uploadRoot.'/'.$this->uploadPath.$this->customPath,$this->destinationFilename.'.'.$photoFile->getExtension());
+            $photoFile->move($this->uploadRoot.DIRECTORY_SEPARATOR.$this->uploadPath.$this->customPath,$this->destinationFilename.'.'.$photoFile->getExtension());
             $this->processedImageBag = new ProcessedImageBag($this->assetPath,$photoFile->getClientOriginalName());
             /// create versions according to the configuration
             $this->createVersions();
