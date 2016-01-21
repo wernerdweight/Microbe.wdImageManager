@@ -1,6 +1,6 @@
 {
     "name":        "wernerdweight/microbe-image-manager",
-    "type":        "plugin",
+    "type":        "library",
     "description": "Support for image resizing, cropping and encrypting for Microbe.",
     "keywords":    [
         "image",
