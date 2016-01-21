@@ -19,14 +19,14 @@
     ],
 
     "require": {
-        "php":                          ">=5.5.9",
-        "wernerdweight/image-manager":  "^1.0"
+        "php": ">=5.5.9",
+        "wernerdweight/image-manager": "~1.0"
     },
 
     "require-dev": {},
 
     "suggest": {
-        "wernerdweight/microbe":  "~1.0"
+        "wernerdweight/microbe": "~1.0"
     },
 
     "autoload": {
