@@ -39,7 +39,7 @@ class ImageManagerUtility
                         $this->im->resize($version['width'],$version['height'],boolval($version['crop']));
                     }
                     /// if resize dimensions are larger than original dimensions and crop is set use original dimensions and adjust their ratio to fit the resize dimensions ratio
-                    else if(isset($version['crop'])){
+                    else if(isset($version['crop']) && $version['crop'] === true){
                         $resizeRatio = intval($version['width'])/intval($version['height']);
                         $originalRatio = $this->processedImageBag->getOriginalWidth()/$this->processedImageBag->getOriginalHeight();
                         /// if resize dimensions are wider crop original height
