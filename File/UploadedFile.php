@@ -30,7 +30,7 @@ class UploadedFile extends \SplFileInfo
 	}
 
 	public function getExtension(){
-		return pathinfo($this->getClientOriginalName(),PATHINFO_EXTENSION);
+		return strtolower(pathinfo($this->getClientOriginalName(),PATHINFO_EXTENSION));
 	}
 
 	public function getClientOriginalName(){
