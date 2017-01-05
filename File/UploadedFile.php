@@ -15,7 +15,7 @@ class UploadedFile extends \SplFileInfo
 		return $mimeType;
 	}
 
-	public function getFilename($filename){
+	public function getFilename($filename = null){
 		/// remove slashes from the (temporary) filename
 		$originalName = str_replace('\\','/',$filename);
 		$pos = strrpos($originalName,'/');
