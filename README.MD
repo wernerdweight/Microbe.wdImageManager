@@ -11,7 +11,7 @@ Installation
 ```js
 	{
 		"require": {
-			"wernerdweight/microbe-image-manager": "~1.0"
+			"wernerdweight/microbe-image-manager": "~2.0"
 		}
 	}
 ```
@@ -30,6 +30,12 @@ wd_image_manager:
             width: 200	# desired image width in pixels (if you ommit width or height image will keep its original dimensions)
             height: 200 # desired image height in pixels (if you ommit width or height image will keep its original dimensions)
             crop: true	# set this to true if you want the resulting image to have EXACTLY the dimensions specified (default false)
+            watermark: # if you don't want your images to be watermarked, do not set this key at all
+                file: absolute/path/to/watermark/file # e.g. %kernel.root_dir%/../web/watermark.png
+                size: 50 # css-like watermark size; possible values: cover/contain/percentage (integer 0 - 100)
+                position:
+                    top: 50 # css-like position from top in percent (integer 0 - 100; default 100 - align to bottom)
+                    left: 50 # css-like position from left in percent (integer 0- 100; default 100 - align to right)
         encrypted_version_name:
             encrypted: true	# if encrypted is set to true original image will be saved encrypted (intended for image download restrictions)
         ...
